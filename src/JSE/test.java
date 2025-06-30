@@ -20,6 +20,14 @@ public class test {
         String str = new String("hello");
         // 修改字符串某个位置上的字符是不允许的，因为字符串是不可变的
 
+
+        // 字符串的修改往往是new一个新的，然后根据原有字符串的信息拼接出来
+        String restr = "";
+        for (int i = 0; i < str.length(); i++) {
+            restr = restr + str.charAt(i) + str.charAt(i);
+        }
+
+
     }
 
 
