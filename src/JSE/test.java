@@ -27,6 +27,7 @@ public class test {
             restr = restr + str.charAt(i) + str.charAt(i);
         }
 
+        // 哦哦这个commit意思是只修改了本地？先不忙推送到github上面去
 
     }
 
