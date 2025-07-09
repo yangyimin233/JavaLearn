@@ -1,9 +1,6 @@
 package tree;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LEETCODE222 {
 
@@ -46,6 +43,42 @@ public class LEETCODE222 {
         // 这样再来个层序遍历做一下吧
         int result = 0;
 
+        // 层序遍历采用队列来实现，每次出队一个节点，然后入队该节点的左右孩子(如果有的话)
+        Deque<TreeNode> q = new LinkedList<>();
+
+        if (root == null) {
+            return result;
+        }
+        q.offer(root);
+        // 只要队列里面还有元素，就一直大层循环
+        while (!q.isEmpty()) {
+
+//            // 这里也可以按照分层的来做
+//            int len = q.size(); // 表示当前层还有几个节点
+//            while (len > 0) {
+//                // 出队一个元素
+//                TreeNode node = q.poll();
+//                result++;
+//                if (node.left != null) {
+//                    q.offer(node.left);
+//                }
+//                if (node.right != null) {
+//                    q.offer(node.right);
+//                }
+//                len--;
+//            }
+
+             // 不分层的话，处理就更为简单了
+            TreeNode node = q.poll();
+            if (node.left != null) {
+                q.offer(node.left);
+            }
+            if (node.right != null) {
+                q.offer(node.right);
+            }
+            result ++;
+
+        }
 
 
 
