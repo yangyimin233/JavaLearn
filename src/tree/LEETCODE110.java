@@ -88,7 +88,7 @@ public class LEETCODE110 {
 
         // 写递归，首先确定 正常 终止条件
         if (root == null) {
-            return;
+            return ;
         }
 
 
