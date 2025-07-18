@@ -140,21 +140,21 @@ public class leetcode209 {
         // 如果满足条件，就左边界向右移动，直到不满足条件
 
         // 注意，这个right是一定要遍历到数组的末尾的，因为我们需要找到所有可能的子数组
-//        for (; right <= nums.length;) {
-//            sum += nums[right]; // 更新当前窗口的和
-//            while (sum >= target) { // 如果当前窗口的和大于等于target
-//                found = true; // 找到满足条件的子数组
-//                result = Math.min(result, right - left + 1); // 更新最小子数组长度
-//                sum -= nums[left]; // 左边界向右移动，更新当前窗口的和
-//                left++;
-//            }
-//            right++; // 右边界向右移动
-//        }
-//        if (!found) {
-//            // 如果没有找到满足条件的子数组，返回 0
-//            return 0;
-//        }
-//        return result;
+        for (; right <= nums.length;) {
+            sum += nums[right]; // 更新当前窗口的和
+            while (sum >= target) { // 如果当前窗口的和大于等于target
+                found = true; // 找到满足条件的子数组
+                result = Math.min(result, right - left + 1); // 更新最小子数组长度
+                sum -= nums[left]; // 左边界向右移动，更新当前窗口的和
+                left++;
+            }
+            right++; // 右边界向右移动
+        }
+        if (!found) {
+            // 如果没有找到满足条件的子数组，返回 0
+            return 0;
+        }
+        return result;
 
 
         // 怎么改一下这段代码呢？这里 right是从0到 nums.length - 1 的
@@ -169,28 +169,34 @@ public class leetcode209 {
         // 以此类推，right指向的元素是当前窗口的右边界元素，而不是下一个元素
 
         // 然后你看外循环的判断条件，right会指向len-1，也就是最后一个元素，直到下次right++，而下次right++只会发生于sum＜情况，遍历结束了，如果sum＞，left会一致++直到sum小于
-        // 这个比较丑，还是推荐采用循环里面是while的情况
-        boolean move = true; // 是否需要移动右边界
-        for (; right < nums.length;) {
-            if (move) {
-                sum += nums[right]; // 更新当前窗口的和
-            }
-            if (sum >= target) { // 如果当前窗口的和大于等于target
-                found = true; // 找到满足条件的子数组
-                result = Math.min(result, right - left); // 更新最小子数组长度
-                sum -= nums[left]; // 左边界向右移动，更新当前窗口的和
-                left++;
-                move = false; // 需要移动左边界，不需要移动右边界
-            } else  {
-                move = true; // 如果当前窗口的和小于target，右边界向右移动
-                right++; // 右边界向右移动
-            }
-        }
-        if (!found) {
-            // 如果没有找到满足条件的子数组，返回 0
-            return 0;
-        }
-        return result;
+//        // 这个比较丑，还是推荐采用循环里面是while的情况
+//        boolean move = true; // 是否需要移动右边界
+//        for (; right < nums.length;) {
+//            if (move) {
+//                sum += nums[right]; // 更新当前窗口的和
+//            }
+//            if (sum >= target) { // 如果当前窗口的和大于等于target
+//                found = true; // 找到满足条件的子数组
+//                result = Math.min(result, right - left); // 更新最小子数组长度
+//                sum -= nums[left]; // 左边界向右移动，更新当前窗口的和
+//                left++;
+//                move = false; // 需要移动左边界，不需要移动右边界
+//            } else  {
+//                move = true; // 如果当前窗口的和小于target，右边界向右移动
+//                right++; // 右边界向右移动
+//            }
+//        }
+//        if (!found) {
+//            // 如果没有找到满足条件的子数组，返回 0
+//            return 0;
+//        }
+//        return result;
+
+
+
+        // 滑动窗口还有个leetcode3，类似的，推荐都是采用两个while嵌套的方式，最外面的是大循环，里面的while表示 合法了，可以继续贪
+        // 就比如这里 sum 大了，可以继续缩小，就是left++，
+        // leetcode3 就是没有重复，可以继续增加，就是right++
 
     }
 
