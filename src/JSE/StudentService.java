@@ -6,4 +6,6 @@ package JSE;
 public interface StudentService {
     int getId();  // 获取学生学号
     void setId(int id);  // 设置学生学号
+
+    // 获取学生姓名
 }
