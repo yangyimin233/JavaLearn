@@ -1,6 +1,6 @@
 package JSE;
 
-public class student {
+public class student implements StudentService {
     // 我来试试java这个类的引用关系
 
     int id; // 学生的学号
@@ -18,5 +18,6 @@ public class student {
 
     public void setId(int id) {
         this.id = id;
+        System.out.println("Student ID 已被修改" );
     }
 }
