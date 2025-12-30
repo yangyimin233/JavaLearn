@@ -23,19 +23,19 @@ public class LEETCODE142 {
             // 否则一直遍历
             // 因为没环的链表一定会到达 null 节点
 
-            Set<ListNode> set = new HashSet<>();
-            ListNode node = head;
-
-            while (node != null) {
-
-                if (set.contains(node)) {
-                    // 说明存在环，且就是当前节点
-                    return node;
-                }
-                set.add(node);
-                node = node.next;
-            }
-            return null;
+//            Set<ListNode> set = new HashSet<>();
+//            ListNode node = head;
+//
+//            while (node != null) {
+//
+//                if (set.contains(node)) {
+//                    // 说明存在环，且就是当前节点
+//                    return node;
+//                }
+//                set.add(node);
+//                node = node.next;
+//            }
+//            return null;
 
 
             // 这个使用了额外的空间，思考？能不能在有限的空间里面做到这个？
@@ -66,6 +66,36 @@ public class LEETCODE142 {
 
 
 
+            // 先不管那些了，直接开始发力
+            ListNode slow = head;
+            ListNode fast = head;
+            while (fast != null && fast.next != null) {
+
+                // 这样会不会空指针呢？
+                // 不会，因为fast 不为空
+                // fast 的next也不为空
+                fast = fast.next.next;
+                slow = slow.next;
+                if (slow == fast) {
+                    break;
+                }
+            }
+
+            if (fast == null || fast.next == null) {
+                // 说明 指针指向null了
+                // 不存在环
+                return null;
+            }
+
+            // 然后此时 再来一个指针从头开始，与这个指向相遇节点的指针再每次走一步，此时再相遇 ，指向的就是环节点
+            ListNode slow1 = head;
+            // 这里为什么不用判断null？
+            // 因为有环 你随便指向，不会出现null 了
+            while (slow1 != slow) {
+                slow1 = slow1.next;
+                slow = slow.next;
+            }
+            return slow;
 
         }
     }
