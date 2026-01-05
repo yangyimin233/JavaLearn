@@ -1,5 +1,6 @@
 package hot100;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class LEETCODE39 {
         if (target == 0) {
             // 将当前路径加入结果集
             // 注意要 new 一个新的 list 出来，否则后续 path 变化会影响结果集
-            res.add(new java.util.ArrayList<>(path));
+            res.add(new ArrayList<>(path));
             return;
         }
 
